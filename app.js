@@ -10,7 +10,14 @@ var fs = require("fs");
 var path = require("path");
 
 app.get("/", function (req, res) {
-  res.send("hello world");
+  fs.readFile("./index.html","utf-8", function(err, data){
+    if (err) {
+      res.send("hello world");
+    }
+    else{
+      res.type("html").send(data);
+    }
+  });  
 });
 
 //获取系统进程表
